@@ -15,12 +15,15 @@ ControleEstacionamento é um aplicativo simples para gerenciar a entrada e saíd
 - Entity Framework
 
 ## Instalação
+- Clone o projeto usando o seguinte comando:
+git clone https://github.com/phlucasfr/ControleEstacionamento.git
+Ou faça download em: [ControleEstacionamento](https://github.com/phlucasfr/ControleEstacionamento/archive/refs/heads/main.zip)
 - O aplicativo pode ser executado tanto utilizando o atalho chamado "ControleEstacionamento" na pasta raiz quanto iniciando o executável chamado "ControleEstacionamento.exe" localizado em `bin/release`.
 
 <div align="center">
-  <img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/01.png" alt="Captura de Tela" style="width: 75%; height: 75%;">
+<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/01.png" alt="Captura de Tela 1" style="width: 75%; height: 75%;">
 </div>
 
 <div align="center">
-  <img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/02.png" alt="Captura de Tela" style="width: 75%; height: 75%;">
+<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/02.png" alt="Captura de Tela 2" style="width: 75%; height: 75%;">
 </div>
