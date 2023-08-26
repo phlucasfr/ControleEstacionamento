@@ -1,26 +1,25 @@
-﻿using ControleEstacionamento.Data.Repositories;
+﻿using ControleEstacionamento.Controller;
 using ControleEstacionamento.Data;
+using ControleEstacionamento.Data.Repositories;
 using System;
 using System.Drawing;
-using System.Windows.Forms;
-using ControleEstacionamento.Models;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace ControleEstacionamento
 {
     public partial class TabelaPrecosForm : Form
     {
         private TabelaPrecosRepository _tabelaPrecosRepository;
+        private TabelaPrecosController _tabelaPrecosController = new TabelaPrecosController();
 
         private Label labelDatiniTpr;
         private Label labelDatfimTpr;
-        private Label labelValhoriniTpr;
-        private Label labelValhoradiTpr;
+        private Label labelValhorTpr;
 
         private DateTimePicker dateTimePickerDatiniTpr;
         private DateTimePicker dateTimePickerDatfimTpr;
-        private TextBox textBoxValhoriniTpr;
-        private TextBox textBoxValhoradiTpr;
+        private TextBox textBoxValhorTpr;
 
         private Button buttonCriar;
         private Button buttonExcluir;
@@ -51,34 +50,25 @@ namespace ControleEstacionamento
 
             labelDatiniTpr = new Label();
             labelDatfimTpr = new Label();
-            labelValhoriniTpr = new Label();
-            labelValhoradiTpr = new Label();
-
+            labelValhorTpr = new Label();
             dateTimePickerDatiniTpr = new DateTimePicker();
             dateTimePickerDatfimTpr = new DateTimePicker();
-            textBoxValhoriniTpr = new TextBox();
-            textBoxValhoradiTpr = new TextBox();
-
+            textBoxValhorTpr = new TextBox();
             buttonCriar = new Button();
             buttonExcluir = new Button();
-
             dataGridViewTabelaPrecos = new DataGridView();
 
             labelDatiniTpr.Text = "Data Inicial:";
             labelDatfimTpr.Text = "Data Final:";
-            labelValhoriniTpr.Text = "Valor Hora Inicial:";
-            labelValhoradiTpr.Text = "Valor Hora Adicional:";
-
+            labelValhorTpr.Text = "Valor Hora Inicial:";
             dateTimePickerDatiniTpr.Name = "dateTimePickerDatiniTpr";
             dateTimePickerDatfimTpr.Name = "dateTimePickerDatfimTpr";
-            textBoxValhoriniTpr.Name = "textBoxValhoriniTpr";
-            textBoxValhoradiTpr.Name = "textBoxValhoradiTpr";
-
+            textBoxValhorTpr.Name = "textBoxValhorTpr";
             buttonCriar.Text = "Criar";
             buttonExcluir.Text = "Excluir";
-
             dataGridViewTabelaPrecos.Name = "dataGridViewTabelaPrecos";
-            dataGridViewTabelaPrecos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Ajusta as colunas para preencher o espaço disponível
+
+            dataGridViewTabelaPrecos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewTabelaPrecos.ReadOnly = true;
             dataGridViewTabelaPrecos.DefaultCellStyle.BackColor = Color.LightGray;
 
@@ -86,41 +76,42 @@ namespace ControleEstacionamento
             Controls.Add(dateTimePickerDatiniTpr);
             Controls.Add(labelDatfimTpr);
             Controls.Add(dateTimePickerDatfimTpr);
-            Controls.Add(labelValhoriniTpr);
-            Controls.Add(textBoxValhoriniTpr);
-            Controls.Add(labelValhoradiTpr);
-            Controls.Add(textBoxValhoradiTpr);
-
+            Controls.Add(labelValhorTpr);
+            Controls.Add(textBoxValhorTpr);
             Controls.Add(buttonCriar);
             Controls.Add(buttonExcluir);
-
             Controls.Add(dataGridViewTabelaPrecos);
 
-            labelDatiniTpr.Location = new Point(20, 20);
-            dateTimePickerDatiniTpr.Location = new Point(150, 20);
-            labelDatfimTpr.Location = new Point(20, 60);
-            dateTimePickerDatfimTpr.Location = new Point(150, 60);
-            labelValhoriniTpr.Location = new Point(20, 100);
-            textBoxValhoriniTpr.Location = new Point(150, 100);
-            labelValhoradiTpr.Location = new Point(20, 140);
-            labelValhoradiTpr.AutoSize = true;
-            textBoxValhoradiTpr.Location = new Point(150, 140);
+            int padding = 28;
+            labelDatiniTpr.Location = new Point(padding, padding);
+            dateTimePickerDatiniTpr.Location = new Point(150, labelDatiniTpr.Top);
+            dateTimePickerDatiniTpr.Width = 125;
 
-            buttonCriar.Size = new Size(80, 30);
-            buttonExcluir.Size = new Size(80, 30);
+            labelDatfimTpr.Location = new Point(padding, dateTimePickerDatiniTpr.Bottom + padding);
+            dateTimePickerDatfimTpr.Location = new Point(150, labelDatfimTpr.Top);
+            dateTimePickerDatfimTpr.Width = 125;
 
-            int buttonTopMargin = Math.Max(textBoxValhoradiTpr.Bottom, dataGridViewTabelaPrecos.Bottom) + 8;
-            buttonCriar.Location = new Point(ClientSize.Width - buttonCriar.Width - 18, buttonTopMargin);
-            buttonExcluir.Location = new Point(ClientSize.Width - buttonCriar.Width - buttonExcluir.Width - 40, buttonTopMargin);
+            labelValhorTpr.Location = new Point(padding, dateTimePickerDatfimTpr.Bottom + padding);
+            textBoxValhorTpr.Location = new Point(150, labelValhorTpr.Top);
+            textBoxValhorTpr.Width = 75;
+            textBoxValhorTpr.TextAlign = HorizontalAlignment.Right;
 
-            dataGridViewTabelaPrecos.Location = new Point(20, 200);
+            buttonCriar.Size = new Size(90, 35);
+            buttonExcluir.Size = new Size(90, 35);
+
+            // Ajusta a posição vertical dos botões para alinhar com a parte de baixo do textBoxValhoradiTpr.
+            int buttonVerticalPosition = textBoxValhorTpr.Bottom - buttonCriar.Height;
+            buttonCriar.Location = new Point(ClientSize.Width - buttonCriar.Width - padding, buttonVerticalPosition);
+            buttonExcluir.Location = new Point(buttonCriar.Left - buttonExcluir.Width - padding, buttonVerticalPosition);
+
+            dataGridViewTabelaPrecos.Location = new Point(20, 160);
             dataGridViewTabelaPrecos.Size = new Size(ClientSize.Width - 40, ClientSize.Height - dataGridViewTabelaPrecos.Top - 30);
+
             dataGridViewTabelaPrecos.Columns.Add("CodigoTpr", "Código");
             dataGridViewTabelaPrecos.Columns["CodigoTpr"].Width = dataGridViewTabelaPrecos.Columns["CodigoTpr"].Width / 2;
             dataGridViewTabelaPrecos.Columns.Add("DatiniTpr", "Data Inicial");
             dataGridViewTabelaPrecos.Columns.Add("DatfimTpr", "Data Final");
-            dataGridViewTabelaPrecos.Columns.Add("ValhoriniTpr", "Valor Hora Inicial");
-            dataGridViewTabelaPrecos.Columns.Add("ValhoradiTpr", "Valor Hora Adicional");
+            dataGridViewTabelaPrecos.Columns.Add("ValhorTpr", "Valor Hora");
 
             dataGridViewTabelaPrecos.DefaultCellStyle.Font = new Font("Arial", 8);
             dataGridViewTabelaPrecos.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8, FontStyle.Bold);
@@ -128,10 +119,38 @@ namespace ControleEstacionamento
             dataGridViewTabelaPrecos.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridViewTabelaPrecos.EnableHeadersVisualStyles = false;
 
+            dateTimePickerDatiniTpr.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDatiniTpr.CustomFormat = "dd/MM/yyyy HH:mm";
+            dateTimePickerDatiniTpr.ShowUpDown = true;
+            dateTimePickerDatfimTpr.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDatfimTpr.CustomFormat = "dd/MM/yyyy HH:mm";
+            dateTimePickerDatfimTpr.ShowUpDown = true;
+
+            Font fontPicker = new Font("Arial", 10);
+            dateTimePickerDatiniTpr.Font = fontPicker;
+            dateTimePickerDatfimTpr.Font = fontPicker;
+            dateTimePickerDatiniTpr.BackColor = Color.LightGray;
+            dateTimePickerDatfimTpr.BackColor = Color.LightGray;
+
             buttonCriar.Click += buttonCriar_Click;
             buttonExcluir.Click += buttonExcluir_Click;
-
             dataGridViewTabelaPrecos.CellClick += dataGridViewTabelaPrecos_CellClick;
+            textBoxValhorTpr.LostFocus += TextBoxValhorTpr_LostFocus;
+            this.MouseClick += Form1_MouseClick;
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Remove o foco do controle ativo.
+            ActiveControl = null;
+        }
+
+        private void TextBoxValhorTpr_LostFocus(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(textBoxValhorTpr.Text, out decimal value))
+            {
+                textBoxValhorTpr.Text = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", value);
+            }
         }
 
         private void dataGridViewTabelaPrecos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -145,64 +164,16 @@ namespace ControleEstacionamento
 
         private void buttonCriar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBoxValhoriniTpr.Text) && !string.IsNullOrWhiteSpace(textBoxValhoradiTpr.Text))
-            {
-                var culture = new CultureInfo("pt-BR");
+            _tabelaPrecosController.RegistrarNovoPreco(dateTimePickerDatiniTpr, dateTimePickerDatfimTpr, textBoxValhorTpr, AtualizarDataGridViewTabelaPrecos);
 
-                var novaTabelaPrecos = new TabelaPrecos
-                {
-                    DatiniTpr = dateTimePickerDatiniTpr.Value,
-                    DatfimTpr = dateTimePickerDatfimTpr.Value
-                };
-
-                string valhoriniTprString = textBoxValhoriniTpr.Text.Replace(".", ",");
-                string valhoradiTprString = textBoxValhoradiTpr.Text.Replace(".", ",");
-
-                if (decimal.TryParse(valhoriniTprString, NumberStyles.AllowDecimalPoint, culture, out decimal valhoriniTpr) &&
-                    decimal.TryParse(valhoradiTprString, NumberStyles.AllowDecimalPoint, culture, out decimal valhoradiTpr))
-                {
-                    novaTabelaPrecos.ValhoriniTpr = valhoriniTpr;
-                    novaTabelaPrecos.ValhoradiTpr = valhoradiTpr;
-
-                    if (novaTabelaPrecos.DatiniTpr.Date == novaTabelaPrecos.DatfimTpr.Date)
-                    {
-                        MessageBox.Show("Por favor, selecione uma data final diferente da inicial.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        _tabelaPrecosRepository.CreateTabelaPrecos(novaTabelaPrecos);
-                        AtualizarDataGridViewTabelaPrecos();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Os valores de valor hora inicial e valor hora adicional estão em um formato inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            textBoxValhorTpr.Text = "";
+            dateTimePickerDatiniTpr.Value = DateTime.Now;
+            dateTimePickerDatfimTpr.Value = DateTime.Now;
         }
 
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
-            if (dataGridViewTabelaPrecos.SelectedRows.Count > 0)
-            {
-                var selectedRow = dataGridViewTabelaPrecos.SelectedRows[0];
-                var codigoTpr = selectedRow.Cells["CodigoTpr"].Value != null ? (int)selectedRow.Cells["CodigoTpr"].Value : 0;
-                var datfimTpr = selectedRow.Cells["DatfimTpr"].Value != null ? (DateTime)selectedRow.Cells["DatfimTpr"].Value : DateTime.MinValue;
-
-                if (codigoTpr > 0)
-                {
-                    _tabelaPrecosRepository.DeleteTabelaPrecos(codigoTpr, datfimTpr);
-                    AtualizarDataGridViewTabelaPrecos();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecione um preço na tabela.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            _tabelaPrecosController.ExcluirPreco(dataGridViewTabelaPrecos, AtualizarDataGridViewTabelaPrecos);
         }
 
         private void AtualizarDataGridViewTabelaPrecos()
@@ -220,8 +191,7 @@ namespace ControleEstacionamento
                 row.Cells["CodigoTpr"].Value = tabelaPrecos.CodigoTpr;
                 row.Cells["DatiniTpr"].Value = tabelaPrecos.DatiniTpr;
                 row.Cells["DatfimTpr"].Value = tabelaPrecos.DatfimTpr;
-                row.Cells["ValhoriniTpr"].Value = tabelaPrecos.ValhoriniTpr;
-                row.Cells["ValhoradiTpr"].Value = tabelaPrecos.ValhoradiTpr;
+                row.Cells["ValhorTpr"].Value = tabelaPrecos.ValhorTpr.ToString("C2");
             }
         }
     }

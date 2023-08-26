@@ -95,13 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\DataGridController.cs" />
-    <Compile Include="Controller\DateTimeController.cs" />
-    <Compile Include="Controller\RegistrarEntradaController.cs" />
-    <Compile Include="Controller\RegistrarSaidaController.cs" />
+    <Compile Include="Controller\RegistroController.cs" />
+    <Compile Include="Controller\TabelaPrecosController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\Repositories\CrudRepository.cs" />
-    <Compile Include="Data\Repositories\MyRepository.cs" />
     <Compile Include="Data\Repositories\TabelaPrecosRepository.cs" />
+    <Compile Include="Services\DataGridService.cs" />
+    <Compile Include="Services\RegistroService.cs" />
+    <Compile Include="Services\TabelaPrecosService.cs" />
     <Compile Include="Utils\Prompt.cs" />
     <Compile Include="View\TabelaPrecosForm.cs">
       <SubType>Form</SubType>
@@ -109,22 +110,21 @@
     <Compile Include="View\TabelaPrecosForm.Designer.cs">
       <DependentUpon>TabelaPrecosForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\DataGrid.cs" />
-    <Compile Include="Models\DateTimeModel.cs" />
     <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\TabelaPrecos.cs" />
     <Compile Include="Models\Veiculo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\DataGridViewHelper.cs" />
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

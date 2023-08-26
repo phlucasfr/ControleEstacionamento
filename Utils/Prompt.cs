@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ControleEstacionamento.Utils
 {
@@ -20,7 +15,16 @@ namespace ControleEstacionamento.Utils
                 StartPosition = FormStartPosition.CenterScreen
             };
             Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
-            TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 250 };
+            TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 250, MaxLength = 7 };
+
+            textBox.KeyPress += (sender, e) =>
+            {
+                if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            };
+
             Button confirmation = new Button() { Text = "OK", Width = 100, Top = 100, DialogResult = DialogResult.OK };
             Button cancelation = new Button() { Text = "Cancelar", Width = 100, Top = 100, DialogResult = DialogResult.Cancel };
             confirmation.Left = textBox.Left + textBox.Width - confirmation.Width;
@@ -36,5 +40,4 @@ namespace ControleEstacionamento.Utils
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
-
 }

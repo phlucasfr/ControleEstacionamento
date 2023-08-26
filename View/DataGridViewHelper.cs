@@ -1,20 +1,13 @@
 ﻿using ControleEstacionamento.Controllers;
-using ControleEstacionamento.Data.Repositories;
 using ControleEstacionamento.Data;
+using ControleEstacionamento.Data.Repositories;
 using ControleEstacionamento.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.CompilerServices;
 
 namespace ControleEstacionamento.View
 {
     public class DataGridViewHelper
     {
-
         public static void AtualizarGrid(DataGridView dataGridView, string placa = null)
         {
             var dbContext = new ApplicationDbContext();
@@ -24,6 +17,7 @@ namespace ControleEstacionamento.View
 
             var _dataGridController = new DataGridController(registroRepository, tabelaPrecosRepository, veiculoRepository);
             var dataGridData = _dataGridController.GetGridData(placa);
+
             //_dataGridController.LimparTabelas();
 
             dataGridView.Rows.Clear();
