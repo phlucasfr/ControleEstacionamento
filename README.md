@@ -2,7 +2,7 @@
 
 ControleEstacionamento é um aplicativo simples para gerenciar a entrada e saída de veículos em um estacionamento.
 
-## Versão 1.0.0
+## Versão 1.0.1
 - Este projeto utiliza alguns conceitos de POO e MVC.
 
 ## Recursos
