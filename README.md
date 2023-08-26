@@ -21,9 +21,9 @@ Ou faça download em: [ControleEstacionamento](https://github.com/phlucasfr/Cont
 - O aplicativo pode ser executado tanto utilizando o atalho chamado "ControleEstacionamento" na pasta raiz quanto iniciando o executável chamado "ControleEstacionamento.exe" localizado em `bin/release`.
 
 <div align="center">
-<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/01.png" alt="Captura de Tela 1" style="width: 75%; height: 75%;">
+<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/01.gif" alt="Captura de Tela 1" style="width: 75%; height: 75%;">
 </div>
 
 <div align="center">
-<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/02.png" alt="Captura de Tela 2" style="width: 75%; height: 75%;">
+<img src="https://github.com/phlucasfr/ControleEstacionamento/blob/main/Screenshots/02.gif" alt="Captura de Tela 2" style="width: 75%; height: 75%;">
 </div>
