@@ -9,6 +9,7 @@ ControleEstacionamento é um aplicativo simples para gerenciar a entrada e saíd
 - Cadastro de preços
 - Registro de entrada
 - Registro de saída
+- Pesquisa por placa
 
 ## Tecnologias Utilizadas
 - SQLite
