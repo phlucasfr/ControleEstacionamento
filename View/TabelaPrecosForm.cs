@@ -60,7 +60,7 @@ namespace ControleEstacionamento
 
             labelDatiniTpr.Text = "Data Inicial:";
             labelDatfimTpr.Text = "Data Final:";
-            labelValhorTpr.Text = "Valor Hora Inicial:";
+            labelValhorTpr.Text = "Valor Hora:";
             dateTimePickerDatiniTpr.Name = "dateTimePickerDatiniTpr";
             dateTimePickerDatfimTpr.Name = "dateTimePickerDatfimTpr";
             textBoxValhorTpr.Name = "textBoxValhorTpr";
@@ -84,16 +84,19 @@ namespace ControleEstacionamento
 
             int padding = 28;
             labelDatiniTpr.Location = new Point(padding, padding);
-            dateTimePickerDatiniTpr.Location = new Point(150, labelDatiniTpr.Top);
+            labelDatiniTpr.Width = 70;
+            dateTimePickerDatiniTpr.Location = new Point(100, labelDatiniTpr.Top);
             dateTimePickerDatiniTpr.Width = 125;
 
             labelDatfimTpr.Location = new Point(padding, dateTimePickerDatiniTpr.Bottom + padding);
-            dateTimePickerDatfimTpr.Location = new Point(150, labelDatfimTpr.Top);
+            labelDatfimTpr.Width = 70;
+            dateTimePickerDatfimTpr.Location = new Point(100, labelDatfimTpr.Top);
             dateTimePickerDatfimTpr.Width = 125;
 
             labelValhorTpr.Location = new Point(padding, dateTimePickerDatfimTpr.Bottom + padding);
-            textBoxValhorTpr.Location = new Point(150, labelValhorTpr.Top);
-            textBoxValhorTpr.Width = 75;
+            labelValhorTpr.Width = 70;
+            textBoxValhorTpr.Location = new Point(100, labelValhorTpr.Top);
+            textBoxValhorTpr.Width = 125;
             textBoxValhorTpr.TextAlign = HorizontalAlignment.Right;
 
             buttonCriar.Size = new Size(90, 35);

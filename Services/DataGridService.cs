@@ -72,8 +72,8 @@ namespace ControleEstacionamento.Services
                             // Verifica a tolerância dos minutos restantes
                             if (minutosRestantes > 10)
                             {
-                                valorAPagar += preco.ValhorTpr;
-                                tempoCobrado += 1;
+                                valorAPagar += preco.ValhorTpr / 2;
+                                tempoCobrado += 0.5;
                             }
                         }
                     }
