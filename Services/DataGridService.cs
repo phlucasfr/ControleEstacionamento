@@ -63,7 +63,7 @@ namespace ControleEstacionamento.Services
                             // Calcula horas completas EX: 3/60 = 0,05
                             int horasAdicionais = (int)tempoAdicional / 60;
 
-                            // 0,05 = 0, mas sabemos que formam 63 minutos, então por isso adiciona + 1
+                            // 0,05 = (int)0, mas sabemos que formam 63 minutos, então por isso adiciona + 1
                             tempoCobrado = horasAdicionais + 1;
 
                             // Adiciona o valor das horas completas
