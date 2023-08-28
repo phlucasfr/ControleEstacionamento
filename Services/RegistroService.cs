@@ -108,7 +108,7 @@ namespace ControleEstacionamento.Services
         }
     }
 
-    public class ResultadoRegistro
+    public struct ResultadoRegistro
     {
         public bool Sucesso { get; }
         public string Mensagem { get; }

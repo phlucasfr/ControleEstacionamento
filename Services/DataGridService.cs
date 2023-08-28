@@ -57,20 +57,20 @@ namespace ControleEstacionamento.Services
                             // Cobrança da primeira hora completa
                             valorAPagar = preco.ValhorTpr;
 
-                            // Calcula o tempo adicional
+                            // Calcula o tempo adicional EX: 63 - 60 = 3
                             double tempoAdicional = duracao.GetValueOrDefault() - 60;
 
-                            // Calcula horas completas e minutos excedentes
+                            // Calcula horas completas EX: 3/60 = 0,05
                             int horasAdicionais = (int)tempoAdicional / 60;
-                            double minutosRestantes = tempoAdicional % 60;
 
+                            // 0,05 = 0, mas sabemos que formam 63 minutos, então por isso adiciona + 1
                             tempoCobrado = horasAdicionais + 1;
 
                             // Adiciona o valor das horas completas
                             valorAPagar += (decimal)horasAdicionais * preco.ValhorTpr;
 
                             // Verifica a tolerância dos minutos restantes
-                            if (minutosRestantes > 10)
+                            if (tempoAdicional > 10)
                             {
                                 valorAPagar += preco.ValhorTpr / 2;
                                 tempoCobrado += 0.5;
